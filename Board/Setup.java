@@ -20,9 +20,13 @@ public class Setup {
         this.frame.setResizable(false);
         this.frame.setVisible(true);
 
-        JPanel panel = new JPanel();
+        /*JPanel panel = new JPanel();
         panel.setBackground(Color.GREEN);
         frame.add(panel);
+        */
+        
+        Screen Test = new Screen();
+        this.frame.add(Test);
 
     }
 
