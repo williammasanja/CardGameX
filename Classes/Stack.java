@@ -6,8 +6,10 @@ import java.util.Random;
 
 public class Stack {
     ArrayList<Cards> stack = new ArrayList<Cards>();
+    private String StackName;
 
-    public Stack(Cards[] List){
+    public Stack(Cards[] List, String Name){
+        this.StackName = Name;
         for(Cards x: List){
             stack.add(x);            
         }
@@ -27,7 +29,6 @@ public class Stack {
             }
         }
         return -1;
-
     }
     
     public void addCard(Cards e){
@@ -47,5 +48,8 @@ public class Stack {
         int randnum = rand.nextInt(stack.size());
         Cards randcard = stack.get(randnum);
         return randcard;
+    }
+    public Cards returnTopCard(){ //Returns first card on stack
+        return stack.get(0);
     }
 }

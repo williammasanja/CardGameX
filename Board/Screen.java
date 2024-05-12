@@ -1,6 +1,12 @@
 package Board;
 
 import javax.swing.JPanel;
+
+import Classes.Cards;
+import Classes.Player;
+import Classes.Stack;
+import Classes.StackCreator;
+
 import javax.swing.ImageIcon;
 
 import java.awt.Color;
@@ -16,6 +22,11 @@ public class Screen extends JPanel implements Runnable {
     private Thread Game;
     private Image Pawn = new ImageIcon("Images/PawnPrototype.png").getImage();
     private Image Royal = new ImageIcon("Images/RoyalBPrototype.png").getImage();
+    
+    private int DrawX = 990;
+    private int DrawY = 520;
+
+
    
     public Screen(){
         super();
@@ -42,7 +53,9 @@ public class Screen extends JPanel implements Runnable {
                 delta += (currentTime - lastTime) / drawInterval;
                 //System.out.println(delta);
                 if( delta > 1){
-                update();
+                
+                //updateTurn();
+                DrawPhase();
                 repaint();
                 delta --;
                 }
@@ -52,15 +65,21 @@ public class Screen extends JPanel implements Runnable {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D)(g);
+        
         
         g.fillRect(400, 520, 400, 140); // Playerhand
 
-        g.fillRect(990, 520, 100, 140); //  Deck
+
+        
+        g.fillRect(990, 520, 100, 140); //  Deck 
+        
         g.drawImage(Pawn, 400,520,null);
         g.drawImage(Pawn, 500,520,null);
         g.drawImage(Pawn, 600,520,null);
         g.drawImage(Royal, 700,520,null);
+        
+        Cards TopCard = StackCreator.Test.returnTopCard();
+        g.drawImage(TopCard.returnImage(), DrawX, DrawY, null); //Shows top Card on 
 
         g.fillRect(300, 150, 600, 360); //Board
 
@@ -73,7 +92,7 @@ public class Screen extends JPanel implements Runnable {
         g.drawString("TURN: " + Integer.toString(Turn), 0, 195);
         
         }
-    public void update(){
+    public void updateTurn(){
             this.Turn += 1;
             try {
                 Thread.sleep(1000);
@@ -81,6 +100,21 @@ public class Screen extends JPanel implements Runnable {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+    
+    }
+    //Animates DrawPhase
+    public void DrawPhase(){
+
+        if (DrawX > 400){
+            DrawX -= 10;
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
     }
 
     

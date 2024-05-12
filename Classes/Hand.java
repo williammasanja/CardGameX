@@ -3,7 +3,7 @@ package Classes;
 public class Hand extends Stack {
 
     public Hand(Cards[] List) {
-        super(List);
+        super(List, "Hand");
     }
 
     public void ShowList(){

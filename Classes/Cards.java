@@ -13,6 +13,7 @@ public class Cards {
     private final int LvL;
     private Image img;
     private Hashtable<String, Image> Types =  new Hashtable<>();
+
     
 
 
@@ -27,10 +28,11 @@ public class Cards {
         Types.put("Royal", new ImageIcon("Images/RoyalBPrototype.png").getImage());
         setImage();
     }
-
     public void setImage(){
         img = this.Types.get(this.Type);
-
+    }
+    public Image returnImage(){
+        return img;
     }
 
     public String getName(){
