@@ -15,7 +15,7 @@ public class Screen extends JPanel implements Runnable {
     private int Turn = 1;
     private Thread Game;
     private Image Pawn = new ImageIcon("Images/PawnPrototype.png").getImage();
-
+    private Image Royal = new ImageIcon("Images/RoyalBPrototype.png").getImage();
    
     public Screen(){
         super();
@@ -60,7 +60,7 @@ public class Screen extends JPanel implements Runnable {
         g.drawImage(Pawn, 400,520,null);
         g.drawImage(Pawn, 500,520,null);
         g.drawImage(Pawn, 600,520,null);
-        g.drawImage(Pawn, 700,520,null);
+        g.drawImage(Royal, 700,520,null);
 
         g.fillRect(300, 150, 600, 360); //Board
 
@@ -82,5 +82,6 @@ public class Screen extends JPanel implements Runnable {
                 e.printStackTrace();
             }
     }
+
     
 }

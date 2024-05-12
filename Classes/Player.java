@@ -1,9 +1,11 @@
 package Classes;
 
+
 public class Player {
     private Stack Deck;
     private Hand PlayerHand;
     private String Name;
+    
 
     Player(String Name, Stack Deck){
         this.Name = Name;
