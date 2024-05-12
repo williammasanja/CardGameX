@@ -1,9 +1,12 @@
 package Classes;
 
+import javax.swing.ImageIcon;
+
 public class Cards {
     private final String Name;
     private  final String Type;
     private final int LvL;
+
 
 
     public Cards(){
