@@ -8,6 +8,12 @@ public class Stack {
     ArrayList<Cards> stack = new ArrayList<Cards>();
     private String StackName;
 
+    public Stack(){
+        stack.add(StackCreator.NA);
+        stack.add(StackCreator.NA);
+        stack.add(StackCreator.NA);
+        stack.add(StackCreator.NA);
+    }
     public Stack(Cards[] List, String Name){
         this.StackName = Name;
         for(Cards x: List){
@@ -18,7 +24,8 @@ public class Stack {
     public void ShowList(){
         int count  = 1;
         for (Cards x: stack){
-            System.out.println(count +""+x);
+            System.out.println(count +": "+x);
+            count++;
         }
     }
 
@@ -51,5 +58,8 @@ public class Stack {
     }
     public Cards returnTopCard(){ //Returns first card on stack
         return stack.get(0);
+    }
+    public Cards returnCard(int index){
+        return stack.get(index);
     }
 }

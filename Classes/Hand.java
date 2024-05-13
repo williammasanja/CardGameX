@@ -1,27 +1,21 @@
 package Classes;
 
+import java.util.Hashtable;
 public class Hand extends Stack {
-
-    public Hand(Cards[] List) {
-        super(List, "Hand");
+    public Hashtable<Integer,Integer> HandPos = new Hashtable<Integer,Integer>();
+    public Hand() {
+        super();
+        //super.addCard(super.randomCard());
+        HandPos.put(0, 400);
+        HandPos.put(1,500);
+        HandPos.put(2,600);
+        HandPos.put(3, 700);
+        //super.addCard(StackCreator.NA);
+        
     }
-
-    public void ShowList(){
-        super.ShowList();
-    }
-    public int indexof(Cards e){
-        return super.indexof(e);
-    }
-
-    public void addCard(Cards e){
-        super.stack.add(e);
-    }
-
-    public void removeCArd(Cards e){
-        super.stack.remove(e);
+    @Override
+    public void removeCard(Cards e){
+        super.stack.set(super.stack.indexOf(e),StackCreator.NA);
     }
     
-    public int getsize(){
-        return super.getsize();
-    }
 }
