@@ -15,10 +15,13 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.MouseInfo;
+import java.awt.event.MouseListener;
 
 
 
-public class Screen extends JPanel implements Runnable {
+
+public class Screen extends JPanel implements Runnable{
     private int Turn = 1;
     private int Phase = 0; //Phases in a Turn
 
@@ -38,7 +41,6 @@ public class Screen extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         GameThread();
     }
-
     public void GameThread(){
         Game = new Thread(this);
         Game.start();
@@ -46,7 +48,6 @@ public class Screen extends JPanel implements Runnable {
 
     @Override
     public void run(){
-        
         double drawInterval = 1000000000/30; 
         double delta = 0.0;
         long lastTime = System.nanoTime();
@@ -55,8 +56,7 @@ public class Screen extends JPanel implements Runnable {
                 currentTime = System.nanoTime();
                 delta += (currentTime - lastTime) / drawInterval;
                 if( delta > 1){
-                
-                updateTurn();
+                //updateTurn();
                 repaint();
                 delta --;
                 }
@@ -66,33 +66,32 @@ public class Screen extends JPanel implements Runnable {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
-        
+
         g.fillRect(400, 520, 400, 140); // Playerhand
 
+        g.fillRect(1090, 460, 100, 50); // nextPhase Button
+        PhaseButton(g);
+        
+        g.fillRect(990, 520, 100, 140); // Deck 
+    
+        showHand(g); 
 
+        if (Phase == 1){
+            DrawPhase(g);
+        }
         
-        g.fillRect(990, 520, 100, 140); //  Deck 
-        
-        //g.drawImage(Pawn, 400,520,null);
-        //g.drawImage(Pawn, 500,520,null);
-        //g.drawImage(Pawn, 600,520,null);
-        //g.drawImage(Royal, 700,520,null);
-        showHand(g);
-        DrawPhase(g);
-        
-         
-
         g.fillRect(300, 150, 600, 360); //Board
 
         g.fillRect(400, 0, 400, 140); //Bot Hand
 
-        //g.fillRect(0,160,170,90); //Turn sign
-        
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.BOLD, 35));
-        g.drawString("TURN: " + Integer.toString(Turn), 0, 195);
+        g.drawString("TURN: " + Integer.toString(Turn), 0, 195); //Sign
+        g.drawString("Phase: " + Integer.toString(Phase), 0, 230);
         
+        g.dispose();
+
+
         }
         public void updateTurn(){
             this.Turn += 1;
@@ -100,9 +99,10 @@ public class Screen extends JPanel implements Runnable {
         }
     //Animates DrawPhase
     public void DrawPhase(Graphics g){
-        g.drawImage(Blank, DrawX, DrawY, getFocusCycleRootAncestor());
+        g.drawImage(Blank, DrawX, DrawY,null);
+
         int avaliblespace = Playerhand.indexof(StackCreator.NA);
-        if (DrawX > Playerhand.HandPos.get(avaliblespace)){
+        if (DrawX > Playerhand.HandPos.get(avaliblespace)-30){
             DrawX -= 10;
             try {
                 Thread.sleep(10);
@@ -110,11 +110,14 @@ public class Screen extends JPanel implements Runnable {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+           
         }
         else{
-
-        }
-
+            Phase = 0;
+            DrawX = 990;
+            DrawY = 520;
+            System.err.println(Phase);
+       }
     }
     public void StacktoHand(Cards e){
             Playerhand.addCard(e);
@@ -126,6 +129,18 @@ public class Screen extends JPanel implements Runnable {
             g.drawImage(Playerhand.returnCard(i).returnImage(),Playerhand.HandPos.get(i),520, getFocusCycleRootAncestor());
         }
     }
-
-    
+    public void PhaseButton(Graphics g){
+        
+        g.fillRect(1090, 460, 100, 50);
+        if(Setup.ClickedX >= 1090 && Setup.ClickedX  <= 1090+100){
+            if(Setup.ClickedY >= 460 && Setup.ClickedY <= 460 + 50){
+                Phase = 1;
+                Setup.ClickedX = 0;
+                Setup.ClickedY = 0;    
+                
+                
+            }
+           
+        }
+    }
 }

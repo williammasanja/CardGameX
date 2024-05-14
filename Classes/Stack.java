@@ -9,10 +9,10 @@ public class Stack {
     private String StackName;
 
     public Stack(){
+        stack.add(StackCreator.A);
+        stack.add(StackCreator.C);
         stack.add(StackCreator.NA);
-        stack.add(StackCreator.NA);
-        stack.add(StackCreator.NA);
-        stack.add(StackCreator.NA);
+        stack.add(StackCreator.C);
     }
     public Stack(Cards[] List, String Name){
         this.StackName = Name;

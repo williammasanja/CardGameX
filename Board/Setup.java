@@ -1,10 +1,15 @@
 package Board;
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
-public class Setup {
+public class Setup implements MouseListener{
     private JFrame frame;
+    public static int ClickedX = 0;
+    public static int ClickedY = 0;
+
 
     public Setup(){
         init();
@@ -26,8 +31,37 @@ public class Setup {
         */
         
         Screen Test = new Screen();
+        Test.addMouseListener(this);
         this.frame.add(Test);
 
     }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        System.out.println("X: "+ e.getX() + " Y: " + e.getY());
+        ClickedX = e.getX();
+        ClickedY = e.getY();
+
+       
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
+
 
 }
