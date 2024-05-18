@@ -8,11 +8,18 @@ public class Stack {
     ArrayList<Cards> stack = new ArrayList<Cards>();
     private String StackName;
 
-    public Stack(){
-        stack.add(StackCreator.A);
-        stack.add(StackCreator.C);
+    public Stack(Boolean B){
+        if (B){
         stack.add(StackCreator.NA);
-        stack.add(StackCreator.C);
+        stack.add(StackCreator.NA);
+        stack.add(StackCreator.NA);
+        stack.add(StackCreator.NA);
+        }
+        else{ //Board
+            stack.add(StackCreator.NA);
+            stack.add(StackCreator.NA);
+            stack.add(StackCreator.NA);
+        }
     }
     public Stack(Cards[] List, String Name){
         this.StackName = Name;
@@ -20,7 +27,7 @@ public class Stack {
             stack.add(x);            
         }
     }
-
+    
     public void ShowList(){
         int count  = 1;
         for (Cards x: stack){
@@ -37,6 +44,7 @@ public class Stack {
         }
         return -1;
     }
+    
     
     public void addCard(Cards e){
         stack.add(e);
@@ -61,5 +69,17 @@ public class Stack {
     }
     public Cards returnCard(int index){
         return stack.get(index);
+    }
+
+    public int avaliblespace(){
+        int count  = 0;
+        for (Cards x: stack){
+            if(x == StackCreator.NA){
+                return count;
+
+            }
+            count++;
+        }
+        return -1;
     }
 }
