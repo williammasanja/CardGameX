@@ -24,9 +24,9 @@ public class Cards {
         this.Name = Name;
         this.Type = Type;
         this.LvL = LvL;
-        Types.put("Blank", new ImageIcon("Images/Cards/Blank.png").getImage());
-        Types.put("Pawn", new ImageIcon("Images/Cards/PawnPrototype.png").getImage());
-        Types.put("Royal", new ImageIcon("Images/Cards/RoyalBPrototype.png").getImage());
+        Types.put("Blank", new ImageIcon("Images/Blank.png").getImage());
+        Types.put("Pawn", new ImageIcon("Images/PawnPrototype.png").getImage());
+        Types.put("Royal", new ImageIcon("Images/RoyalBPrototype.png").getImage());
         setImage();
     }
     public void setImage(){
