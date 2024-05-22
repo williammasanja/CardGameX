@@ -12,7 +12,7 @@ public class Hand extends Stack {
         HandPos.put(2,600);
         HandPos.put(3, 700);
         }
-        else{ //Board
+        else { //Player Board
             HandPos.put(0, 350);
             HandPos.put(1,550);
             HandPos.put(2,750);
@@ -44,6 +44,7 @@ public class Hand extends Stack {
         super.stack.remove(i);
         super.stack.set(i, StackCreator.NA);
     }
+    
 
     
     

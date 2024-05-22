@@ -21,6 +21,10 @@ public class Stack {
             stack.add(StackCreator.NA);
         }
     }
+
+    public Stack(){
+        stack.add(StackCreator.NA);
+    }
     public Stack(Cards[] List, String Name){
         this.StackName = Name;
         for(Cards x: List){
